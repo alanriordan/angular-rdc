@@ -1,0 +1,1 @@
+angular.module('rdc.main', ['rdc.main.controller', 'rdc.main.service']);

@@ -1,0 +1,1 @@
+angular.module('rdc.bovine', ['rdc.bovine.service', 'rdc.bovine.controller']);

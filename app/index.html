@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rdc" ng-controller="MainController"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <script src="bower_components/angular/angular.js"></script>
+    <link data-require="bootstrap-css@3.0.3" data-semver="3.0.3" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <link href="app.css" rel="stylesheet"/>
+    <link href="ngNotificationsBar.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+    <script data-require="angular-ui-bootstrap@*" data-semver="0.10.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular-animate.js"></script>
+   
+<title>RDC {{version}}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+    
+    
+<body class="container">
+
+  <section>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">RDC</div>  
+        <div class="panel-body">The harp is going to go here</div>
+    </div>
+    <notifications-bar class="notifications"></notifications-bar>
+  </section>
+    
+ 
+  <div ui-view></div>
+  <br/>
+  <div class="col-md-4">
+      <div class="btn-group btn-group-sm" role="group">      
+        <button type="button" class="btn btn-default" ng-click="showSuccess()">Save</button> 
+        <button type="button" class="btn btn-default">Finish</button>
+        <button type="button" class="btn btn-default" ng-click="go('main')">Close</button>
+      </div>
+  </div>
+ 
+</body>
+
+<script src="app.js"></script>
+<script src="modules/bovine/bovineService.js"></script>    
+<script src="modules/bovine/bovineController.js"></script>
+<script src="modules/bovine/bovine_modules.js"></script>
+ 
+<script src="modules/nitrates/nitratesService.js"></script>    
+<script src="modules/nitrates/nitratesController.js"></script>
+<script src="modules/nitrates/nitrates_modules.js"></script>    
+    
+<script src="modules/ovine/ovineService.js"></script>    
+<script src="modules/ovine/ovineController.js"></script>
+<script src="modules/ovine/ovine_modules.js"></script>     
+    
+<script src="modules/main/mainController.js"> </script>
+<script src="modules/main/mainService.js"> </script>    
+<script src="modules/main/main_modules.js"> </script> 
+    
+<script src="modules/tab/tabController.js"></script>    
+<script src="modules/tab/tab_modules.js"></script>
+    
+<script src="ngNotificationsBar.js"></script>
+   
+</html>

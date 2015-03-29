@@ -1,0 +1,46 @@
+<div class="col-md-6">
+    <div class="panel panel-default" >
+        <div class="panel-heading clearfix">
+            <span class="panel-title pull-left">
+             Current Inspections:   
+            </span>
+            <span class="panel-title pull-right">
+                <input type="text" placeholder="Search" ng-model="filterText"/>
+            </span>            
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Herd No.</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="herd in herds | filter:{herdNo:filterText}" ng-animate="'animate'">
+                        <td><a ui-sref="tab({herdId:herd.herdNo})">{{herd.herdNo}}</a></td>
+                        <td class="{{getHerdStatus(herd.status)}}">{{herd.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    
+    <div class="panel panel-default" >
+        <div class="panel-heading">
+            Notifications: 
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="notification in notifications">{{notification.text}}</li>                
+            </ul>
+        </div>
+</body>
+</html>                                		
+        </div>
+    </div>
+    
+</div>    
