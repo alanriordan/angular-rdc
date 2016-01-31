@@ -1,6 +1,10 @@
 angular.module('rdc.main.controller',['rdc.main.service'])
 
-.controller('MainController',["$scope", "$state", "$stateParams", "appVersion", "mainService", "notifications", function($scope, $state, $stateParams, appVersion, mainService, notifications){
+.controller('MainController',["$scope", "$state", "$stateParams", "appVersion", "mainService", function($scope, $state, $stateParams, appVersion, mainService){
+    
+      /*  var OBJECT_STORE_NAME = 'INSPECTIONS';  
+        var inspectionsObjectStore = $indexedDB.objectStore(OBJECT_STORE_NAME);*/
+    
         $scope.go = function(route){
 			$state.go(route);
 		};
@@ -26,31 +30,18 @@ angular.module('rdc.main.controller',['rdc.main.service'])
 
     mainService.getHerds().then(function(data){
         $scope.herds = data;
+        mainService.saveHerdDetails(data);
     });
     
-    mainService.getNotifications().then(function(data){
-        $scope.notifications = data;
-    });
     
-    $scope.getHerdStatus = function(status){
-        var inspStatus = "";
-        if (status === 'Finished'){
-            inspStatus = 'success';
-        }else if (status === 'Saved'){
-            inspStatus = 'warning';
-        }
-        return inspStatus;
+    $scope.getHerdStatus = function(herdNo){
+       mainService.getHerdDetails(); 
+      // Update scope
+     // console.log(results);
+    
     }
     
-      
-    $scope.showError = function () {
-    notifications.showError({message: 'Oops! Something bad just happend!'});
-  };
-  $scope.showWarning = function () {
-    notifications.showWarning({message: 'Hey! Take a look here..'});
-  };
-  $scope.showSuccess = function () {
-    notifications.showSuccess({message: 'Congrats! Life is great!'});
-  };
+  
+ 
 
 }]);

@@ -1,46 +1,65 @@
-<div class="col-md-6">
-    <div class="panel panel-default" >
-        <div class="panel-heading clearfix">
-            <span class="panel-title pull-left">
-             Current Inspections:   
-            </span>
-            <span class="panel-title pull-right">
-                <input type="text" placeholder="Search" ng-model="filterText"/>
-            </span>            
-        </div>
-        <div class="panel-body">
-            <table class="table table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Herd No.</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="herd in herds | filter:{herdNo:filterText}" ng-animate="'animate'">
-                        <td><a ui-sref="tab({herdId:herd.herdNo})">{{herd.herdNo}}</a></td>
-                        <td class="{{getHerdStatus(herd.status)}}">{{herd.status}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+            <div class="col-md-9">
+                <div class="panel panel-default" >
+                    <div class="panel-heading clearfix">
+                        <span class="panel-title pull-left">
+                         Current Inspections:   
+                        </span>
+                        <span class="panel-title pull-right">
+                            <input type="text" placeholder="Search" ng-model="filterText"/>
+                        </span>            
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed" style="border-collapse:collapse;">
 
-<div class="col-md-6">
-    
-    <div class="panel panel-default" >
-        <div class="panel-heading">
-            Notifications: 
-        </div>
-        <div class="panel-body">
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="notification in notifications">{{notification.text}}</li>                
-            </ul>
-        </div>
-</body>
-</html>                                		
-        </div>
+            <thead>
+                <tr><th>&nbsp;</th>
+                    <th>Herd Number</th>
+                    <th>Farmer Name</th>
+                    <th>Inspection Status</th> 
+                </tr>
+            </thead>
+
+            <tbody ng-repeat="herd in herds | filter:{herdNo:filterText}">
+                 <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+                      <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                <td>{{herd.herdNo}}</td>
+                <td>{{herd.farmerName}}</td>
+                <td>{{getHerdStatus(herd.instanceNo)}}</td>
+                 <td><a ui-sref="tab({herdId:herd.herdNo})"><li class="glyphicon glyphicon-pencil"></li></a></td>     
+            </tr>
+            <tr>
+                <td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo{{$index}}"> 
+                  <table class="table table-condensed">
+                         <thead>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><b>SMR</b></td>
+                                <td><b>Status</b></td>
+                                <td>&nbsp;</td>
+                             </tr>
+                         </thead>
+                          <tbody>
+                            <tr ng-repeat="smr in herd.smrs" class="info">
+                                <td>&nbsp;</td>
+                                <td>{{smr.name}}</td>
+                                <td>{{smr.status}}</td>
+
+                                <td><a ui-sref="tab.{{smr.name}}({herdId:herd.herdNo})"><li class="glyphicon glyphicon-pencil"></li></a></td>
+                              </tr>
+
+
+
+                          </tbody>
+                    </table>
+
+                  </div> </td>
+            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
     </div>
-    
-</div>    
+
+
+
+
