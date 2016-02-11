@@ -1,6 +1,6 @@
         angular.module('rdc.main.service', [])
 
-        .service('mainService', ['$http', '$q', '$indexedDB', function ($http, $q, $indexedDB) {
+        .service('mainService', ['$http', '$q',  function ($http, $q) {
             
             var OBJECT_STORE_NAME = 'inspections';
             

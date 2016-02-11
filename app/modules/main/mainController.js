@@ -1,6 +1,6 @@
 angular.module('rdc.main.controller',['rdc.main.service'])
 
-.controller('MainController',["$scope", "$state", "$stateParams", "appVersion", "mainService", function($scope, $state, $stateParams, appVersion, mainService){
+.controller('MainController',["$scope", "$state", "$stateParams", "appVersion", "mainService", "$mdSidenav", function($scope, $state, $stateParams, appVersion, mainService, $mdSidenav){
     
       /*  var OBJECT_STORE_NAME = 'INSPECTIONS';  
         var inspectionsObjectStore = $indexedDB.objectStore(OBJECT_STORE_NAME);*/
@@ -12,6 +12,10 @@ angular.module('rdc.main.controller',['rdc.main.service'])
 		$scope.active = function(route){
 			return $state.is(route);
 		};
+		
+		$scope.toggleUsersList = function() {
+		      $mdSidenav('left').toggle();
+		    }
     
       
 		$scope.tabs = [

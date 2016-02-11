@@ -1,54 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="rdc" ng-controller="MainController"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <link data-require="bootstrap-css@3.0.3" data-semver="3.0.3" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
-    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-indexed-db/angular-indexed-db.js"></script>
-     
-     
-    <link href="app.css" rel="stylesheet"/>
-    <link href="ngNotificationsBar.css" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-    <script data-require="angular-ui-bootstrap@*" data-semver="0.10.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
-    
-   
-<title>RDC {{version}}</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-    
-    
-<body class="container">
+<html lang="en" >
+  <head>
+    <title>Angular Material - Starter App</title>
 
-  <section>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading text-center">RDC</div>  
-        <div class="panel-body">The harp is going to go here</div>
-    </div>
-    <notifications-bar class="notifications"></notifications-bar>
-  </section>
-    
- 
-  <div ui-view></div>
-  <br/>
-  <div class="col-md-4">
-      <div class="btn-group btn-group-sm" role="group">      
-        <button type="button" class="btn btn-default" ng-click="showSuccess()">Save</button> 
-        <button type="button" class="btn btn-default">Finish</button>
-        <button type="button" class="btn btn-default" ng-click="go('main')">Close</button>
-      </div>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"/>
+    <!-- <link rel="stylesheet" href="assets/app.css"/>
+ -->
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+
+  </head>
+
+  <body ng-app="rdc" layout="row" ng-controller="MainController as ul" ng-cloak >
+
+  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+      md-component-id="left"
+      ng-click="ul.toggleList()" aria-label="Show User List"
+      md-is-locked-open="false">
+
+    <md-toolbar class="md-whiteframe-z1">
+      <h3>Users</h3>
+    </md-toolbar>
+
+    <md-list>
+      <md-list-item ng-repeat="it in ul.users">
+          <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+            {{it.name}}
+          </md-button>
+      </md-list-item>
+    </md-list>
+
+  </md-sidenav>
+
+
+  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+
+    <md-toolbar layout="row" class="md-whiteframe-z1">
+      <md-button id="main" class="menu" ng-click="ul.toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <h3>Angular Material - Starter App</h3>
+    </md-toolbar>
+
+    <md-content flex id="content">
+        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+        <h2>{{ul.selected.name}}</h2>
+        <p>{{ul.selected.content}}</p>
+
+        <md-button class="contact" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ ul.selected.name }}">
+          <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
+          <md-icon md-svg-icon="share"></md-icon>
+        </md-button>
+      </md-content>
+
   </div>
- 
-</body>
 
-<script src="app.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="node_modules/angular-material/angular-material.js"></script>
+
+   <script src="app.js"></script>
 <script src="modules/bovine/bovineService.js"></script>    
 <script src="modules/bovine/bovineController.js"></script>
 <script src="modules/bovine/bovine_modules.js"></script>
@@ -69,5 +95,6 @@
 <script src="modules/tab/tab_modules.js"></script>
     
 <script src="ngNotificationsBar.js"></script>
-   
+
+  </body>
 </html>
